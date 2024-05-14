@@ -12,8 +12,10 @@ Module Module1
         Console.WriteLine("1. Setting Prefix")
         Console.WriteLine("2. Start")
 Start:
+        Console.Write("Choose Option : ")
         Select Case Console.ReadLine()
             Case "1"
+                Console.Write("Insert Prefix : ")
                 Prefix = Console.ReadLine()
                 GoTo Start
             Case Else
@@ -27,7 +29,7 @@ Start:
     Private Sub CoreSS()
         While Start
             If DateTime.Now.Second = 0 OrElse DateTime.Now.Second = 30 Then
-                Dim fileName As String = Prefix & " Jam" & DateTime.Now.Hour & "." & DateTime.Now.Minute & ".png"
+                Dim fileName As String = Prefix & " " & DateTime.Now.Date.ToString("dd-MM-yyyy") & " Jam " & DateTime.Now.Hour & "." & DateTime.Now.Minute & ".png"
                 Dim ss As BitmapImage = ConvertBitmapImage(TakeScreenShot())
                 SavePngImage(ss, fileName)
                 Console.WriteLine(fileName)
