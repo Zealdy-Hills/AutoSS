@@ -28,13 +28,17 @@ Start:
 
     Private Sub CoreSS()
         While Start
-            If DateTime.Now.Second = 0 OrElse DateTime.Now.Second = 30 Then
-                Dim fileName As String = Prefix & " " & DateTime.Now.Date.ToString("dd-MM-yyyy") & " Jam " & DateTime.Now.Hour & "." & DateTime.Now.Minute & ".png"
-                Dim ss As BitmapImage = ConvertBitmapImage(TakeScreenShot())
-                SavePngImage(ss, fileName)
-                Console.WriteLine(fileName)
-                Threading.Thread.Sleep(1000)
-            End If
+            Try
+                If DateTime.Now.Second = 0 OrElse DateTime.Now.Second = 30 Then
+                    Dim fileName As String = Prefix & " " & DateTime.Now.Date.ToString("dd-MM-yyyy") & " Jam " & DateTime.Now.Hour & "." & DateTime.Now.Minute & ".png"
+                    Dim ss As BitmapImage = ConvertBitmapImage(TakeScreenShot())
+                    SavePngImage(ss, fileName)
+                    Console.WriteLine(fileName)
+                    Threading.Thread.Sleep(1000)
+                End If
+            Catch ex As Exception
+                Console.WriteLine(ex.Message)
+            End Try
         End While
     End Sub
 
